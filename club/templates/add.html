@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <h1>동아리 등록</h1>
+    <br>
+    <form action="{%url 'add' %}" method="POST">
+        {% csrf_token %}
+        <p>이름: <input type="text" name="name"></p>
+        <p>소개: <input type="text" name="detail"></p>
+        <p>인원 수: <input type="text" name="members"></p>
+        <button type="submit">작성하기</button><br>
+    </form>
+    <a href="{%url 'home' %}"><button>홈으로</button></a>
+    {% endblock %}
+</body>
+</html>
