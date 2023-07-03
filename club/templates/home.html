@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="kr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCHOOL CLUBS</title>
-</head>
-<body>
-    {% extends 'base.html' %}
-    {% block content %}
+{% extends 'base.html' %}
+{% block content %}
     <h1>동아리 목록</h1>
     <br>
-    <li>{{club.name}}</li>
-    <br>
-    
+    {% for club in clubs %}
+    <div>
+        <a href="{% url 'info' club.id %}">
+            <li>{{club.name}}</li>
+        </a>
+        <br>
+    </div>
+    {% endfor %}
     <a href="{%url 'add' %}"><button style="margin-top: 10px;">추가하기</button></a>
+
     {% endblock %}
-</body>
-</html>

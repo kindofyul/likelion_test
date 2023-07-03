@@ -1,14 +1,39 @@
-<!DOCTYPE html>
-<html lang="kr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCHOOL CLUBS</title>
-</head>
-<body>
-    {% extends 'base.html' %}
-    {% block content %}
-  
-    {% endblock %}
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+  <h1>소개합니다</h1>
+  <br>
+  이름: {{club.name}}
+  <br>
+  활동: {{club.detail}}
+  <br>
+  멤버 수: {{club.members}}
+  <br>
+  <div style="float: left;">
+  <a href="{%url 'home' %}"><button style="margin-top: 10px;">홈으로</button></a>
+  <a href="{%url 'edit' club.id %}"><button style="margin-top: 10px;">수정하기</button></a>
+  <a href="{%url 'delete' club.id %}"><button style="margin-top: 10px;">삭제하기</button></a>
+
+</div>
+ 
+ <!-- 댓글 -->
+ <div id="comment_creater">
+    <h4 style="margin-bottom: 0px;">댓글</h4>
+
+    <!--목록-->
+    {% for comment in club.comment_set.all %}
+    <div id="comment_index" style="padding: 10px 0px 10px; border-bottom: 1px solid slategray;">
+        <div style="width: 50%;">{{comment.comment}}</div>
+        <div style="width: 30%; font-size: 10px;">{{comment.created_at}}</div>
+    </div>
+    {% endfor %}
+
+    <!--댓글 작성-->
+    <form method="POST" action="{%url 'comment' club.id %}">
+        {% csrf_token %}
+        <div style="padding-top: 10px;">
+        <input type="text" placeholder="댓글을 입력하세요" name="comment">
+        <button type="submit">입력</button>
+        </div>
+    </form>
+ </div>
+  {% endblock %}

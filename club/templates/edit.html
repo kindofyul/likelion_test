@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{%url 'update' club.id %}" method="POST">
+    {% csrf_token %}
+    <p>이름: <input type="text" name="name" value="{{club.name}}"></p>
+    <p>소개: <input type="text" name="detail" value="{{club.detail}}"></p>
+    <p>인원 수: <input type="text" name="members" value="{{club.members}}"></p>
+<div style="float: left;">
+    <a href="{%url 'info' club.id %}"><button style="margin-top: 10px;">뒤로가기</button></a>
+    <button type="submit">수정하기</button><br>
+</div>
+</form>
+{% endblock %}
+</body>

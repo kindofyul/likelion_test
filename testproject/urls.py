@@ -22,5 +22,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('add/', add, name='add'),
-    path('info/', info, name="info"),
+    path('<str:club_id>', info, name="info"),
+    path('comment/<str:club_id>/', comment, name="comment"),
+    path('edit/<str:club_id>/', edit, name="edit"),
+    path('update/<str:club_id>/', update, name="update"),
+    path('delete/<str:club_id>/', delete, name="delete"),
+
 ]
